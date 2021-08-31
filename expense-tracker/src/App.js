@@ -1,6 +1,6 @@
 import ExpenseList from "./components/Expenses/ExpenseList";
 
-function App() {
+const App = () => {
   const expenses = [
     { title: "Car Insurrance", amount: 298.53, date: new Date(2021, 2, 2) },
     { title: "React course", amount: 34.2, date: new Date(2021, 2, 2) },
