@@ -1,37 +1,26 @@
 import "./ExpenseList.css";
 
-import Card from "../UI/Card";
 import ExpenseItem from "./ExpenseItem";
-import ExpenseFilter from "./ExpenseFilter";
-import { useState } from "react";
 
 const ExpenseList = ({ expenses }) => {
-  const [selectedFilter, setSelectedFilter] = useState('2020');
+
   
+  if (expenses.length === 0) {
+    return <h2 className="expenses-list__fallback">Found no expenses</h2>
+  }
 
-  const filterChangeHandler = (selectedFilter) => {
-    setSelectedFilter(selectedFilter);
-  };
   return (
-    <div>
-      <Card className="expense-list">
-        <ExpenseFilter selected={selectedFilter} onChangeFilter={filterChangeHandler} />
-
-        {expenses
-          // .filter((expense) => {
-          //   return expense.date.getFullYear() === selectedFilter;
-          // })
-          .map((expense) => {
-            return (
-              <ExpenseItem
-                title={expense.title}
-                amount={expense.amount}
-                date={expense.date}
-              ></ExpenseItem>
-            );
-          })}
-      </Card>
-    </div>
+    <ul className="expenses-list">
+      {expenses.map((expense) => {
+      return (
+        <ExpenseItem
+          key={expense.id}
+          title={expense.title}
+          amount={expense.amount}
+          date={expense.date}
+        ></ExpenseItem>
+      );})}
+    </ul>
   );
 };
 
